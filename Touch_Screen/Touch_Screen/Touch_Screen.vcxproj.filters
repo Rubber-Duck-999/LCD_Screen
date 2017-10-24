@@ -21,5 +21,8 @@
     <ClInclude Include="__vm\.Touch_Screen.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Menu_Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -36,6 +36,8 @@
 #include <URTouch.h>
 #include <Wire.h>
 #include "string.h"
+#include "Menu_Class.h"
+
 #define TOUCH_ORIENTATION  LANDSCAPE
 //==== Creating Objects
 UTFT    myGLCD(ITDB32S, 38, 39, 40, 41); //Parameters should be adjusted to your Display/Schield model
@@ -44,11 +46,18 @@ URTouch  myTouch(6, 5, 4, 3, 2);
 extern uint8_t SmallFont[];
 extern uint8_t BigFont[];
 extern uint8_t SevenSegNumFont[];
-extern uint8_t SmallFont[];
 
 const int SW_pin = 2; // digital pin connected to switch output
 const int X_pin = 0; // analog pin connected to X output
 const int Y_pin = 1; // analog pin connected to Y output
+
+uint8_t Preset_Choice = 1;
+
+const uint16_t Data_Value = 0;
+
+const uint8_t Buttons = 4;
+
+const uint8_t Button_Size = 40;
 
 void setup() 
 {
@@ -65,6 +74,8 @@ void loop()
 	//Read_Axis(Y_pin, Mode);
 	delay(1000);
 	Main_Menu_GLCD();
+	delay(1000);
+	Temperature_Menu();
 }
 
 void Wipe()
@@ -76,9 +87,29 @@ void Main_Menu_GLCD(void)
 {
 	//Main Mneu shown when the user starts the program
 	Wipe();
-	//Calls both generic functions and inputs the specific strings to this menu design
-	String Menu_Options[4] = { "Option 1", "Option 2", "Option 3", "Option 4" };
-	Generic_Menu("Main Menu", Menu_Options);
+	String Title = "Main Menu";
+	String Menu_Options[4] =
+	{
+		"Option 1",
+		"Option 2",
+		"Option 3",
+		"Option 4"
+	};
+	uint16_t Array_1[5] = { 0 };
+	uint16_t Array_2[5] = { 0 };
+    Array_1[5] = Presets::Get_Array_Of_Colours(Preset_Choice);
+
+	Presets::Return;
+	Array_2[5] = Presets::Get_Array_Of_Axis(Preset_Choice);
+
+	// Constructor -   (Title)   
+	//                 (Array of Menu Option Strings)
+	//                 (Array of Background_Colour)   
+	//                 (Array of Axis Values)  
+	//                 (Data_Value)
+	//                 (Amount of Buttons)
+	//                 (Button Size in pixels)
+	Generic_Menu Main_Menu(String Title, String Menu_Options[], uint16_t Array_1[] , uint16_t Array_2[], uint16_t Data_Value, uint8_t Buttons, uint8_t Button_Size);
 	int Mode = 0;
 	int Pin = Y_pin;
 	delay(300);
@@ -144,8 +175,23 @@ void Temperature_Menu(void)
 	//Main Mneu shown when the user starts the program
 	Wipe();
 	//Calls both generic functions and inputs the specific strings to this menu design
-	String Menu_Options[4] = { "Option 1", "Option 2", "Option 3", "Option 4" };
-	Generic_Menu("Temperature Menu", Menu_Options);
+	String Title = "Secondary Menu";
+	String Menu_Options[4] =
+	{
+		"Option 1",
+		"Option 2",
+		"Option 3",
+		"Option 4"
+	};
+
+	// Constructor -   (Title)   
+	//                 (Array of Menu Option Strings)
+	//                 (Array of Background_Colour)   
+	//                 (Array of Axis Values)  
+	//                 (Data_Value)
+	//                 (Amount of Buttons)
+	//                 (Button Size in pixels)
+	Generic_Menu Main_Menu(String Title, String Menu_Options[], uint16_t Array_1[], uint16_t Array_2[], uint16_t Data_Value, uint8_t Buttons, uint8_t Button_Size);
 	int Mode = 0;
 	int Pin = Y_pin;
 	delay(300);
@@ -184,28 +230,3 @@ void Temperature_Menu(void)
 	}
 }
 
-void Generic_Menu(String Title, String Menu_Options[])
-{
-	myGLCD.fillScr(VGA_RED);
-	myGLCD.setBackColor(VGA_RED);
-	myGLCD.setFont(BigFont);
-	myGLCD.setColor(VGA_BLACK);
-	myGLCD.print(Title, CENTER, 1);
-
-	int X_Axis_1 = 35, X_Axis_2 = 285;
-	int Y_Axis_1 = 40, Y_Axis_2 = 80;
-	int Difference_Y_Axis = 50;
-	for (int i = 0; i < 4; i++)
-	{
-		myGLCD.setColor(VGA_BLACK); //Fill of the rectangle Colour
-		myGLCD.fillRoundRect(X_Axis_1, Y_Axis_1, X_Axis_2, Y_Axis_2); // Draws filled rounded rectangle
-		myGLCD.setColor(VGA_WHITE); // Outline colour is set
-		myGLCD.drawRoundRect(X_Axis_1, Y_Axis_1, X_Axis_2, Y_Axis_2); // Draws rounded rectangle without a fill, so the overall appearance of the button looks like it has a frame
-		myGLCD.setFont(BigFont); // Sets the font to big
-		myGLCD.setBackColor(VGA_BLACK); // Sets the background color of the area where the text will be printed to green, same as the button
-		int Text_Point = Y_Axis_1 + 10;
-		myGLCD.print(Menu_Options[i], CENTER, Text_Point); // Prints the string
-		Y_Axis_1 = Y_Axis_1 + Difference_Y_Axis;
-		Y_Axis_2 = Y_Axis_2 + Difference_Y_Axis;
-	}
-}
