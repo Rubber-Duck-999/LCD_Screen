@@ -19,6 +19,8 @@
       -------         ----            ------          -----------
       1.0            24/10/17         S.Crowther      Initial version
       1.1            25/10/17         S.Crowther      Added Namespace with data structure for presets 
+      1.2            27/10/17         S.Crowther      Changed constant pin declarations, uncommented functions,
+                                                      Implementaed Choose Menu
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
  Parameters:
