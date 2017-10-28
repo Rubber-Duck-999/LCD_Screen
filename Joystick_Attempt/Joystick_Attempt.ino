@@ -4,7 +4,7 @@ const int X_pin = 1; // analog pin connected to X output
 const uint8_t Y_pin = 0; // analog pin connected to Y output
 
 void setup() {
-  pinMode(SW_pin, INPUT);
+  pinMode(SW_pin, OUTPUT);
   digitalWrite(SW_pin, HIGH);
   Serial.begin(115200);
 }
@@ -21,7 +21,9 @@ void loop()
 
 int Axis(int Mode)
 {
-  uint8_t X_Axis_Value = analogRead(Y_pin);
+  uint16_t X_Axis_Value = analogRead(Y_pin);
+  Serial.print("Pin \n");
+  Serial.println(X_Axis_Value);
   if (X_Axis_Value > 750)
   {
     if (Mode < 2)

@@ -13,8 +13,6 @@ C:\Users\simon\AppData\Local\Temp\VMBuilds\Touch_Screen\mega_atmega2560\Debug\To
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\mega/pins_arduino.h \
  C:\Users\simon\Documents\Arduino\libraries\UTFT/UTFT.h \
  C:\Users\simon\Documents\Arduino\libraries\UTFT/hardware/avr/HW_AVR_defines.h \
- C:\Users\simon\Documents\Arduino\libraries\URTouch/URTouch.h \
- C:\Users\simon\Documents\Arduino\libraries\URTouch/hardware/avr/HW_AVR_defines.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src/Wire.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Stream.h \
  C:\Users\simon\AppData\Local\Temp\VMBuilds\Touch_Screen\mega_atmega2560\Debug\Menu_Class.h \

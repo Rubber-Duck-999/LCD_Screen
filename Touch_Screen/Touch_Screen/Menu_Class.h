@@ -20,6 +20,8 @@
       1.1            25/10/17         S.Crowther      Added Namespace with data structure for presets 
       1.2            27/10/17         S.Crowther      Added changes to main functions created in the namespace presets, swapped
                                                       the longer functions with shorter and more useful ones
+      1.3            28/10/17         S.Crowther      Made cahnges to the input values of Generic_Menu constructor
+	                                                  and removed member variables from the Generic_Menu Class
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 
@@ -44,6 +46,8 @@ namespace Presets
 	uint16_t Get_Axis(int Preset_Choice, uint8_t Axis_Choice);
 	uint8_t Get_Amount_Of_Buttons_Preset(int Preset_Choice);
 	uint8_t Get_Button_Size_Preset(int Preset_Choice);
+	uint16_t Get_Data_Colours(int Preset_Choice, uint8_t Colour_Choice);
+	uint16_t Get_Data_Axis(int Preset_Choice, uint8_t Axis_Choice);
 }
 
 
@@ -71,14 +75,13 @@ class Generic_Menu
 	  //Y_Axis_2;
 	  //Difference_Y_Axis;
 	  
-	  uint16_t Data_Value;
-	  //Data value used for outputting on screen
-	  
 	  uint8_t Buttons;
 	  //Amount of buttons required
 	  
 	  uint8_t Y_Axis_Button_Size;
 	  //Size of Buttons on the screen
+
+	  uint8_t Brightness_Level;
 	  
 public:
    
@@ -92,17 +95,22 @@ public:
       Generic_Menu 
 	     (String In_Title,
 		  String In_Options[],
-		  uint16_t In_Colours[],
 		  uint16_t In_Axis[],
-		  uint16_t In_Data,
 		  uint8_t In_Buttons,
-		  uint8_t In_Buttons_Size);
+		  uint8_t In_Buttons_Size,
+		  uint8_t Brightness_Level);
 	  
 	  //Declaration of member functions
 	  //Definition in Cpp file of Menu_Class
-	  void Draw_Main();
+	  void Draw_Main(uint8_t Preset_Choice);
 	  void Draw_Menu_Options();
-	  void Draw_Inputs_Option();
+	  void Draw_Inputs_Option
+	     (String Title, 
+          String Unit, 
+          uint8_t Preset_Choice, 
+          String Measurement, 
+          uint16_t Data_Value,
+          uint8_t Pin);
 	  void Draw_Frame(uint8_t Mode);
 	  uint8_t Read_Axis(int Pin, uint8_t Mode);
 	  
