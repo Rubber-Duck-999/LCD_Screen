@@ -254,13 +254,12 @@ Generic_Menu::Generic_Menu
  uint8_t In_Buttons, 
  uint8_t In_Buttons_Size,
  uint8_t Brightness_Level)
- // Constructor -   (Title)   
- //                 (Array of Menu Option Strings)
- //                 (Array of Background_Colour)   
- //                 (Array of Axis Values)  
- //                 (Data_Value)
- //                 (Amount of Buttons)
- //                 (Button Size in pixels)
+	// Constructor -   (Title)   
+	//                 (Array of Menu Option Strings)  
+	//                 (Array of Axis Values)  
+	//                 (Amount of Buttons)	
+	//                 (Button Size in pixels)
+    //                 (Brightness_Level)
 {
 	//Constructor Function
 	// Initialises all Member Values

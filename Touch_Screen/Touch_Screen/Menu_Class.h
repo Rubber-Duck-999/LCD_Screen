@@ -85,13 +85,12 @@ class Generic_Menu
 	  
 public:
    
-      // Constructor -   (Title)   
-	  //                 (Array of Menu Option Strings)
-	  //                 (Array of Background_Colour)   
-	  //                 (Array of Axis Values)  
-	  //                 (Data_Value)
-	  //                 (Amount of Buttons)
-	  //                 (Button Size in pixels)
+	// Constructor -   (Title)   
+	//                 (Array of Menu Option Strings)  
+	//                 (Array of Axis Values)  
+	//                 (Amount of Buttons)	
+	//                 (Button Size in pixels)
+    //                 (Brightness_Level)
       Generic_Menu 
 	     (String In_Title,
 		  String In_Options[],
